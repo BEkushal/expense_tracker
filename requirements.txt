@@ -3,3 +3,4 @@ contextlib3
 pytest
 fastapi
 uvicorn
+streamlit
