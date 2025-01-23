@@ -1,6 +1,8 @@
 import mysql.connector
 from contextlib3 import contextmanager
 
+
+
 @contextmanager
 def get_db_cursor(commit = False):
     connection = mysql.connector.connect(
@@ -30,8 +32,7 @@ def fetch_expense_for_date(expense_date):
     with get_db_cursor() as cursor:
         cursor.execute("SELECT * FROM EXPENSES WHERE EXPENSE_DATE = %s;",(expense_date,))
         expenses = cursor.fetchall()
-        for expense in expenses:
-            print(expense)
+    return expenses
             
 
 def insert_expense(expense_date,amount,category,notes):
@@ -50,9 +51,5 @@ def fetch_expense_summary(start_date,end_date):
                        (start_date,end_date))
         data = cursor.fetchall()
     return data
-    
-    
-if __name__ == "__main__":
-    summary = fetch_expense_summary("2024-08-05","2024-09-05")
-    for record in summary:
-        print(record)
+
+
