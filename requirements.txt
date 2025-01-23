@@ -1,3 +1,5 @@
 mysql-connector-python 
 contextlib3
 pytest
+fastapi
+uvicorn
