@@ -14,8 +14,8 @@ This project is an expense management system that consists of a Streamlit fronte
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/expense-management-system.git
-   cd expense-management-system
+   git clone https://github.com/yourusername/expense_tracker.git
+   cd expense_tracker
    ```
 1. **Install dependencies:**:   
    ```commandline
