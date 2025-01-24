@@ -7,6 +7,8 @@ API_URL = "http://localhost:8000"
 
 st.title("Expense Management System")
 tab1,tab2 = st.tabs(["Add/Update","Analytics"])
+
+# Configuring Add/Update tab
 with tab1:
     selected_date = st.date_input("Enter date:",datetime(2024,8,1))
     response = requests.get(f"{API_URL}/expenses/{selected_date}")
@@ -18,7 +20,8 @@ with tab1:
         existing_expenses = []
         
 categories = ["Rent","Food","Shopping","Entertainment","Other"]
-        
+
+# Display the columns      
 with st.form(key = "expense_form"):
     c1,c2,c3 = st.columns(3)
     with c1:
@@ -28,8 +31,10 @@ with st.form(key = "expense_form"):
     with c3:
         st.text("Notes")
     
+    # Container to store values entered by user 
     expenses = []
     
+    # Maxium 5 entries allowed
     for i in range(5):
         if i < len(existing_expenses):
             amount = existing_expenses[i]['amount']
@@ -55,6 +60,7 @@ with st.form(key = "expense_form"):
             
     submit = st.form_submit_button()
     if submit:
+        # Only Push those records to the backend/db which are expenses
         filtered_expenses = [expense for expense in expenses if expense['amount'] > 0]
         
         response = requests.post(f"{API_URL}/expenses/{selected_date}", json=filtered_expenses)
