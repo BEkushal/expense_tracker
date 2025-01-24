@@ -58,3 +58,11 @@ def get_analytics(date_range: DateRange):
     return return_type
 
 
+@app.get("/monthly_summary/")
+def get_analytics():
+    monthly_summary = db_connector.fetch_expense_monthwise()
+    if monthly_summary is None:
+        raise HTTPException(status_code=500, detail="Failed to retrieve monthly expense summary from the database.")
+
+    return monthly_summary
+

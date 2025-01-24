@@ -52,9 +52,17 @@ def fetch_expense_summary(start_date,end_date):
         data = cursor.fetchall()
     return data
 
+def fetch_expense_monthwise():
+    logger.info("fetch_expense_mothwise is called with a breakdown of all expenses month wise")
+    with get_db_cursor() as cursor:
+        cursor.execute(""" SELECT MONTH(EXPENSE_DATE) EXPENSE_MONTH , MONTHNAME(EXPENSE_DATE) MONTH , 
+                       SUM(AMOUNT) TOTAL_EXPENSE FROM EXPENSES GROUP BY EXPENSE_MONTH , MONTH """)
+        data = cursor.fetchall()
+    return data
 
 if __name__ == "__main__":
-    exp = fetch_expense_for_date("2024-09-03")
-    print(exp)
-    rec = fetch_expense_summary("2024-08-01","2024-09-02")
-    print(rec)
+    # exp = fetch_expense_for_date("2024-09-03")
+    # print(exp)
+    # rec = fetch_expense_summary("2024-08-01","2024-09-02")
+    # print(rec)
+    print(fetch_expense_monthwise())
