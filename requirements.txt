@@ -1,6 +1,9 @@
-mysql-connector-python 
-contextlib3
-pytest
-fastapi
-uvicorn
-streamlit
+mysql-connector-python == 9.2.0
+pandas == 2.2.3
+pydantic == 2.10.5
+contextlib3 == 3.10.0
+requests == 2.32.3
+pytest == 8.3.4
+fastapi == 0.115.7
+uvicorn == 0.34.0
+streamlit == 1.41.1
